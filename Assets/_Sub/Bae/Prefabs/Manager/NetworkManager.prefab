@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3200176714990393282}
   - component: {fileID: 6581624734982250841}
   - component: {fileID: 3709791003795818089}
-  - component: {fileID: 5912919565558221429}
   - component: {fileID: 7257518310161370580}
   m_Layer: 0
   m_Name: NetworkManager
@@ -54,7 +53,7 @@ MonoBehaviour:
   editorAutoStart: 0
   sendRate: 60
   offlineScene: Assets/_Sub/Bae/Scene/Test.unity
-  onlineScene: Assets/_Sub/Bae/Scene/Lobby.unity
+  onlineScene: Assets/_Sub/Bae/Scene/chapter1.unity
   offlineSceneLoadDelay: 0
   transport: {fileID: 3709791003795818089}
   networkAddress: localhost
@@ -62,7 +61,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1341709108886965507, guid: ec48196e44b79284081d5c6006f9d5a8, type: 3}
+  playerPrefab: {fileID: 8453197966436518037, guid: e666d40d5abfae548b5224eb92f79fbf, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
@@ -124,20 +123,6 @@ MonoBehaviour:
   maxFragments: 55
   ignoreCachedMessagesAtStartUpInSeconds: 2
   relayControl: 1
---- !u!114 &5912919565558221429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9010855181338360226}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Mirror::Mirror.NetworkManagerHUD
-  offsetX: 0
-  offsetY: 0
 --- !u!114 &7257518310161370580
 MonoBehaviour:
   m_ObjectHideFlags: 0

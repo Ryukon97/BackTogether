@@ -836,10 +836,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Spike
       objectReference: {fileID: 0}
-    - target: {fileID: 4911857358903427660, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
-      propertyPath: m_Name
-      value: spike
-      objectReference: {fileID: 0}
     - target: {fileID: 5644915986718251566, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.013443
@@ -1130,6 +1126,26 @@ PrefabInstance:
     - target: {fileID: 20668060265169684, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
       propertyPath: m_Name
       value: Moving Spike (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860674590642159713, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
+      propertyPath: m_Points.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860674590642159713, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
+      propertyPath: m_Points.Array.data[2].x
+      value: 0.41973114
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860674590642159713, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
+      propertyPath: m_Points.Array.data[2].y
+      value: -0.3235693
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860674590642159713, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
+      propertyPath: m_Points.Array.data[3].x
+      value: 0.5057361
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860674590642159713, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
+      propertyPath: m_Points.Array.data[3].y
+      value: -0.4933035
       objectReference: {fileID: 0}
     - target: {fileID: 4911857358903427660, guid: 51f153a1cbfe5b748b0de37641ca4bd2, type: 3}
       propertyPath: m_Name
@@ -1637,6 +1653,7 @@ GameObject:
   - component: {fileID: 1699388386}
   - component: {fileID: 1699388388}
   - component: {fileID: 1699388387}
+  - component: {fileID: 1699388389}
   m_Layer: 0
   m_Name: Tilemap_Spikes
   m_TagString: Untagged
@@ -2400,6 +2417,44 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1699388389
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699388385}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1001 &1767727128
 PrefabInstance:
   m_ObjectHideFlags: 0

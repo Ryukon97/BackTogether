@@ -75,6 +75,13 @@ public class GameSaveManager : MonoBehaviour
 
     public void ClearChapter(int chapterNumber)
     {
+        // [DEMO VERSION] 2챕터 클리어 시 3챕터가 열리는 것을 물리적으로 원천 차단합니다.
+        // 저장 파일에도 1챕터까지만 클리어 된 것으로 기록합니다. (즉 2챕터까지만 개방됨)
+        if (chapterNumber >= 1)
+        {
+            chapterNumber = 1; // 최대치를 1챕터 클리어로 강제 고정
+        }
+
         // 1. 내 최고 기록 갱신 및 저장
         if (chapterNumber > currentData.maxClearedChapter)
         {
@@ -83,10 +90,13 @@ public class GameSaveManager : MonoBehaviour
         }
 
         // 🌟 2. 추가된 로직: 현재 파놓은 방의 "선택된 챕터 한계치"도 같이 올려줍니다!
-        // 이렇게 해야 메인으로 나가서 방을 다시 파지 않아도 다음 벽이 자동으로 열립니다.
+        // [DEMO VERSION] 단, 3챕터 이상으로 열리는 것은 막습니다. (최대 2까지만 허용)
+        int nextChapter = chapterNumber + 1;
+        if (nextChapter > 2) nextChapter = 2; // 다음 챕터가 3이 되려고 하면 2로 억제
+
         if (PrivateLobbyManager.selectedChapter <= chapterNumber)
         {
-            PrivateLobbyManager.selectedChapter = chapterNumber + 1;
+            PrivateLobbyManager.selectedChapter = nextChapter;
         }
     }
 
@@ -109,6 +119,14 @@ public class GameSaveManager : MonoBehaviour
         {
             string json = File.ReadAllText(saveFilePath);
             currentData = JsonUtility.FromJson<SaveData>(json);
+
+            // [DEMO VERSION] 개발자들의 기존 올클리어 세이브 데이터로 인해 
+            // 로비 UI나 물리적 문이 열리는 것을 방지하기 위해 로드 즉시 최대 클리어 챕터를 1로 깎습니다.
+            if (currentData.maxClearedChapter > 1)
+            {
+                currentData.maxClearedChapter = 1;
+            }
+
             Debug.Log($"[Load] 세이브 로드 성공! 최고 챕터: {currentData.maxClearedChapter}");
         }
         else

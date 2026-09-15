@@ -16,6 +16,13 @@ public class ChapterBlocker : NetworkBehaviour
     public bool isOpen = false;
     public override void OnStartServer()
     {
+        // [DEMO VERSION] 데모 버전에선 3챕터 이상으로 통하는 물리적 문(Blocker)이 절대 열리지 않도록 강제로 막습니다.
+        if (targetChapterNumber >= 3)
+        {
+            isOpen = false;
+            return;
+        }
+
         int maxCleared = 0;
         if (GameSaveManager.Instance != null)
         {

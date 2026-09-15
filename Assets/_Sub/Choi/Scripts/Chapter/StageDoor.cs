@@ -16,6 +16,7 @@ public class StageDoor : NetworkBehaviour
     public GameObject clearTextUI;
     public TMP_Text countText;
 
+    private bool clearStarted;
     private HashSet<uint> arrivedPlayers = new HashSet<uint>();
 
     void Start()
@@ -27,6 +28,7 @@ public class StageDoor : NetworkBehaviour
     [ServerCallback]
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (clearStarted) return;
         NetworkIdentity identity = collision.GetComponent<NetworkIdentity>();
         if (identity != null && collision.CompareTag("Player"))
         {
@@ -58,7 +60,16 @@ public class StageDoor : NetworkBehaviour
 
                 if (isClearConditionMet)
                 {
-                    RpcTriggerClearEffect();
+                    clearStarted = true;
+                    bool demoEnding = DemoManager.IsDemoMode && currentStageNumber == 2;
+                    // Reliable RPC marks intentional exit on every peer before shutdown.
+                    // The persistent manager survives the door's scene being unloaded.
+                    RpcTriggerClearEffect(demoEnding);
+                    if (demoEnding)
+                    {
+                        if (!NetworkClient.active) DemoManager.BeginEnding();
+                        return;
+                    }
                     StartCoroutine(WaitAndLoadScene());
                 }
             }
@@ -76,8 +87,9 @@ public class StageDoor : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void RpcTriggerClearEffect()
+    private void RpcTriggerClearEffect(bool demoEnding)
     {
+        if (demoEnding) DemoManager.BeginEnding();
         if (GameSaveManager.Instance != null)
         {
             GameSaveManager.Instance.ClearChapter(currentStageNumber);
@@ -118,6 +130,7 @@ public class StageDoor : NetworkBehaviour
 
     private IEnumerator WaitAndLoadScene()
     {
+        if (DemoManager.IsDemoMode && currentStageNumber == 2) yield break;
         yield return new WaitForSeconds(2.0f);
         if (isServer && NetworkManager.singleton != null)
         {

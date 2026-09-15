@@ -9,6 +9,7 @@ public class LobbyGameStarter : MonoBehaviour
     public void OnStartGameButtonClicked()
     {
 
+        if (!DemoManager.AllowsScene(gameSceneName)) return;
         if (NetworkServer.active)
         {
             Debug.Log($"모든 플레이어를 데리고 {gameSceneName} 씬으로 이동합니다!");

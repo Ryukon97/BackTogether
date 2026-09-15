@@ -27,6 +27,13 @@ public partial class ClientLobbyManager
         if (lobby == null)
             return;
 
+        if (DemoManager.IsDemoMode &&
+            (!int.TryParse(GetLobbyAttribute(lobby, "CHAPTER", ""), out int demoChapter) ||
+             !DemoManager.AllowsChapter(demoChapter)))
+        {
+            // Demo-only rooms are filtered above; reject unsupported direct joins.
+            return;
+        }
         if (!EOSLobby.IsLobbyJoinable(
                 lobby,
                 out uint currentMembers,

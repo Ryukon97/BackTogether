@@ -148,6 +148,7 @@ public partial class ClientLobbyManager
 
             int chapterNum = 0;
             int.TryParse(chapterStr, out chapterNum);
+            if (!DemoManager.AllowsChapter(chapterNum)) continue;
 
             // ★ [핵심 요구사항] EX 스테이지 / 6챕 클리어 전까지 검색 결과에서 숨기기 로직
             bool isExStage = chapterStr.Contains("EX") || chapterNameAttr.Contains("EX") || chapterNum >= 7;

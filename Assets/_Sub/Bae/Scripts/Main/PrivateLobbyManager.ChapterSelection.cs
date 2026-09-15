@@ -12,6 +12,10 @@ using UnityEngine.UI;
 
 public partial class PrivateLobbyManager
 {
+    [Header("데모 잠금 안내 UI")]
+    [Tooltip("직접 만든 TMP를 연결하세요. 폰트와 번역 문구는 변경하지 않고 표시 여부만 제어합니다.")]
+    [SerializeField] private TMP_Text demoReleaseNotice;
+
     public void OnClick_PrevChapter()
     {
         selectedChapterIndex = GetNextSelectableChapterIndex(selectedChapterIndex, -1);
@@ -38,7 +42,7 @@ public partial class PrivateLobbyManager
             if (candidate < 1) candidate = maxChapterCount;
             if (candidate > maxChapterCount) candidate = 1;
 
-            if (exStageUnlocked || !IsExChapter(candidate))
+            if (DemoManager.IsDemoMode || exStageUnlocked || !IsExChapter(candidate))
                 return candidate;
 
             guard--;
@@ -101,6 +105,9 @@ public partial class PrivateLobbyManager
             }
         }
 
+        bool demoLocked = !DemoManager.AllowsChapter(displayChapter);
+        if (demoLocked) isUnlocked = false;
+        if (demoReleaseNotice != null) demoReleaseNotice.gameObject.SetActive(demoLocked);
         if (chapterLockObject != null) chapterLockObject.SetActive(!isUnlocked);
         if (makeRoomButton != null) makeRoomButton.interactable = isUnlocked;
         if (chapterPreviewImage != null) chapterPreviewImage.color = isUnlocked ? Color.white : new Color(0.3f, 0.3f, 0.3f, 1f);

@@ -21,6 +21,7 @@ public class ChapterDoor : NetworkBehaviour
     [ServerCallback]
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!DemoManager.AllowsScene(chapterSceneName)) return;
         if (isWarping) return; // 중복 트리거 방지
 
         if (collision.CompareTag("Player"))

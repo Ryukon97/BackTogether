@@ -36,6 +36,7 @@ public partial class PrivateLobbyManager
 
     public static bool IsExStageUnlockedForCurrentPlayer()
     {
+        if (DemoManager.IsDemoMode) return false;
         if (exStageUnlockedBySecretCommand) return true;
 
         return GameSaveManager.Instance != null &&
@@ -49,6 +50,7 @@ public partial class PrivateLobbyManager
 
     private void UpdateSecretCommandInput()
     {
+        if (DemoManager.IsDemoMode) return;
         if (exStageUnlockedBySecretCommand) return;
 
         if (!CanReceiveSecretCommandInput())

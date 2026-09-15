@@ -16,6 +16,7 @@ public class ChapterBlocker : NetworkBehaviour
     public bool isOpen = false;
     public override void OnStartServer()
     {
+        if (!DemoManager.AllowsChapter(targetChapterNumber)) { isOpen = false; return; }
         int maxCleared = 0;
         if (GameSaveManager.Instance != null)
         {

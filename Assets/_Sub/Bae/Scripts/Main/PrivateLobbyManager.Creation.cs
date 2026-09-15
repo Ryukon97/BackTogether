@@ -14,6 +14,7 @@ public partial class PrivateLobbyManager
 {
     public void OnClick_MakeRoom()
     {
+        if (!DemoManager.AllowsChapter(selectedChapterIndex)) { UpdateChapterUI(); return; }
         SubscribeEvents();
         if (isCreatingLobby) return;
 

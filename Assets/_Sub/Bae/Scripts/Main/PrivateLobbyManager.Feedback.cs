@@ -15,7 +15,7 @@ public partial class PrivateLobbyManager
     private void SetAllButtonsInteractable(bool interactable)
     {
         if (mainHostButton != null) mainHostButton.interactable = interactable;
-        if (makeRoomButton != null) makeRoomButton.interactable = interactable;
+        if (makeRoomButton != null) makeRoomButton.interactable = interactable && DemoManager.AllowsChapter(selectedChapterIndex);
         if (prevChapterButton != null) prevChapterButton.interactable = interactable;
         if (nextChapterButton != null) nextChapterButton.interactable = interactable;
         if (prevRoomTypeButton != null) prevRoomTypeButton.interactable = interactable;

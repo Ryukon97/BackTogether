@@ -41,6 +41,7 @@ public class HostDisconnectHandler : MonoBehaviour
 
     private void Update()
     {
+        if (DemoManager.Ending) return;
         // 0. 디스커넥트 팝업이 열려 있는 동안 입력 처리
         if (disconnectPanel != null && disconnectPanel.activeSelf)
         {

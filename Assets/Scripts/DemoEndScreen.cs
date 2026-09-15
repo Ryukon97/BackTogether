@@ -29,8 +29,8 @@ public class DemoEndScreen : MonoBehaviour
             if (demoEndPanel != null)
                 demoEndPanel.SetActive(true);
                 
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             
             // 한 번 보여줬으면 다음에 메인 메뉴로 올 때는 안 뜨도록 초기화
             shouldShowEndScreen = false;
@@ -68,6 +68,7 @@ public class DemoEndScreen : MonoBehaviour
     /// </summary>
     public static void TriggerDemoEndAndDisconnect()
     {
+        if (DemoManager.IsDemoMode) { DemoManager.BeginEnding(); return; }
         // 1. 메인 메뉴로 돌아갔을 때 패널을 띄우라고 신호를 남깁니다. (static 변수라 씬이 넘어가도 유지됨)
         shouldShowEndScreen = true;
 

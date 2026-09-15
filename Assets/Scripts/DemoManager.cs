@@ -43,7 +43,14 @@ public class DemoManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null) { Destroy(gameObject); return; }
+        if (Instance != null)
+        {
+            // Main recreates its own buttons. Keep the persistent manager, but
+            // hand it the new scene-owned references before discarding this copy.
+            Instance.RebindSceneUI(this);
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
         IsDemoMode = demoToggle != null ? demoToggle.isOn : demoMode;
         DontDestroyOnLoad(gameObject);
@@ -53,18 +60,50 @@ public class DemoManager : MonoBehaviour
     private void Start()
     {
         if (Instance != this) return;
+        BindButtons();
+        RefreshUI();
+    }
+
+    private void BindButtons()
+    {
+        UnbindButtons();
         if (endWishlistButton != null) endWishlistButton.onClick.AddListener(OpenWishlist);
         if (screenWishlistButton != null) screenWishlistButton.onClick.AddListener(OpenWishlist);
         if (returnToMainButton != null) returnToMainButton.onClick.AddListener(ReturnToMain);
-        RefreshUI();
     }
-    private void OnDestroy()
+
+    private void UnbindButtons()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
         if (endWishlistButton != null) endWishlistButton.onClick.RemoveListener(OpenWishlist);
         if (screenWishlistButton != null) screenWishlistButton.onClick.RemoveListener(OpenWishlist);
         if (returnToMainButton != null) returnToMainButton.onClick.RemoveListener(ReturnToMain);
-        if (Instance == this) Instance = null;
+    }
+
+    private void RebindSceneUI(DemoManager sceneCopy)
+    {
+        UnbindButtons();
+        // Children of the duplicate Demo will be destroyed. Keep the original
+        // persistent equivalents; only adopt UI belonging to the new Main scene.
+        if (sceneCopy.demoEndPanel != null && !sceneCopy.demoEndPanel.transform.IsChildOf(sceneCopy.transform))
+            demoEndPanel = sceneCopy.demoEndPanel;
+        if (sceneCopy.endWishlistButton != null && !sceneCopy.endWishlistButton.transform.IsChildOf(sceneCopy.transform))
+            endWishlistButton = sceneCopy.endWishlistButton;
+        if (sceneCopy.returnToMainButton != null && !sceneCopy.returnToMainButton.transform.IsChildOf(sceneCopy.transform))
+            returnToMainButton = sceneCopy.returnToMainButton;
+        if (sceneCopy.screenWishlistButton != null && !sceneCopy.screenWishlistButton.transform.IsChildOf(sceneCopy.transform))
+            screenWishlistButton = sceneCopy.screenWishlistButton;
+        if (sceneCopy.demoLabel != null && !sceneCopy.demoLabel.transform.IsChildOf(sceneCopy.transform))
+            demoLabel = sceneCopy.demoLabel;
+        BindButtons();
+    }
+
+    private void OnDestroy()
+    {
+        // A discarded duplicate never owned listeners on Main's new buttons.
+        if (Instance != this) return;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        UnbindButtons();
+        Instance = null;
     }
 
     public static bool AllowsChapter(int chapter) => !IsDemoMode || (chapter >= 1 && chapter <= 2);

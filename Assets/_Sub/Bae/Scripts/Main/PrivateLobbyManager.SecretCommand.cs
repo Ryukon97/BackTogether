@@ -101,17 +101,8 @@ public partial class PrivateLobbyManager
 
     private bool CanReceiveSecretCommandInput()
     {
-        if (isCreatingLobby) return false;
-
-        bool isConnectPanelOpen = mainPanel != null && mainPanel.activeInHierarchy;
-        bool isHostPanelOpen = hostPanel != null && hostPanel.activeInHierarchy;
-        bool isLoadingPanelOpen = loadingPanel != null && loadingPanel.activeInHierarchy;
-        bool isErrorPopupOpen = errorPopupPanel != null && errorPopupPanel.activeInHierarchy;
-
-        return isConnectPanelOpen &&
-               !isHostPanelOpen &&
-               !isLoadingPanelOpen &&
-               !isErrorPopupOpen;
+        // [DEMO VERSION] 데모 버전에선 코나미 커맨드를 통한 EX 챕터 해금을 원천 차단합니다.
+        return false;
     }
 
     private void ResetSecretCommand()

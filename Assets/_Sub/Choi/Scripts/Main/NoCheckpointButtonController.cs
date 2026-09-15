@@ -42,6 +42,9 @@ public class NoCheckpointButtonController : MonoBehaviour
             canUseNoCheckpoint = (maxCleared >= 6) || PrivateLobbyManager.IsExStageUnlockedForCurrentPlayer();
         }
 
+        // [DEMO VERSION] 데모 버전에서는 노체크포인트 모드를 무조건 비활성화합니다.
+        canUseNoCheckpoint = false;
+
         UpdateVisuals();
     }
 
@@ -52,6 +55,9 @@ public class NoCheckpointButtonController : MonoBehaviour
         {
             int maxCleared = GameSaveManager.Instance.currentData.maxClearedChapter;
             canUseNoCheckpoint = (maxCleared >= 6) || PrivateLobbyManager.IsExStageUnlockedForCurrentPlayer();
+
+            // [DEMO VERSION] 데모 버전에서는 무조건 비활성화합니다.
+            canUseNoCheckpoint = false;
 
             if (!canUseNoCheckpoint && isChecked)
             {

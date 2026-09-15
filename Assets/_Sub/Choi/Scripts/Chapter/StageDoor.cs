@@ -134,11 +134,19 @@ public class StageDoor : NetworkBehaviour
         yield return new WaitForSeconds(2.0f);
         if (isServer && NetworkManager.singleton != null)
         {
-            string targetLobbyScene = string.IsNullOrEmpty(NetworkManager.singleton.onlineScene)
-                ? lobbySceneName
-                : NetworkManager.singleton.onlineScene;
+            // [DEMO VERSION] 2챕터를 클리어했다면 로비로 돌아가지 않고 엔딩 패널 시퀀스를 시작합니다.
+            if (currentStageNumber == 2)
+            {
+                DemoEndScreen.TriggerDemoEndAndDisconnect();
+            }
+            else
+            {
+                string targetLobbyScene = string.IsNullOrEmpty(NetworkManager.singleton.onlineScene)
+                    ? lobbySceneName
+                    : NetworkManager.singleton.onlineScene;
 
-            NetworkManager.singleton.ServerChangeScene(targetLobbyScene);
+                NetworkManager.singleton.ServerChangeScene(targetLobbyScene);
+            }
         }
     }
 }

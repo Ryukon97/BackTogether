@@ -43,7 +43,8 @@ public class GameSaveManager : MonoBehaviour
     /// </summary>
     private string GetSaveFilePath()
     {
-        string saveFileName = "BackTogetherSaveData.json";
+        // [DEMO VERSION] 데모용 세이브 파일 이름으로 변경하여 본편과 세이브 연동을 분리합니다.
+        string saveFileName = "BackTogetherDemoSaveData.json";
 
 #if STOVE_BUILD
         if (StovePCSDK3Manager.InstanceExists && StovePCSDK3Manager.Instance.isInitialized)

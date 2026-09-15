@@ -28,7 +28,7 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/_Sub/Bae/Scene/Lobby.unity
     m_guid: 2f8adfb2aea1cbf4fa183737ee40af59
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/NLobby.unity
     m_guid: f85a0d95fd23bd24a8901f7e22ea40ee
   - m_enabled: 1
@@ -37,46 +37,46 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/_Sub/Bae/Scene/chapter2.unity
     m_guid: 14fa4e7c044e77548a6a7e6c7c85bbaa
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/chapter3.unity
     m_guid: 064504b666050754088c5831562872a3
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/chapter4.unity
     m_guid: c73086132291c0145a50d0f87d24056d
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/chapter5.unity
     m_guid: 8f42a90c12ab6554693324b18ca16ab2
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/chapter6.unity
     m_guid: 630d34a98dfb1274fa219014c97b3e2a
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Sin/Scene/Ex1.unity
     m_guid: 0b3b47fae6f587b4cb3e29d78e98baa6
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Sin/Scene/Ex2.unity
     m_guid: 703c7a1c4841c0f4abd10995eb37aa55
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Sin/Scene/NEx1.unity
     m_guid: 096526beefd14624290633afeebc5af2
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Sin/Scene/NEx2.unity
     m_guid: 7880e39cbfb3fe947895a15d71073725
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/Nchapter1.unity
     m_guid: 2003bdc69837f1e43a4dd093b9566c5a
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/Nchapter2.unity
     m_guid: f12e58964d08333498ac9c47c31f4543
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/Nchapter3.unity
     m_guid: def2d1b6fb0e4044e92d32ac00a48bc5
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/Nchapter4.unity
     m_guid: 787fcd850fcd2d649854c0541aea9ee1
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/Nchapter5.unity
     m_guid: 7fa51ad0d184686429ab8e1bfe6f4354
-  - m_enabled: 1
+  - m_enabled: 0
     m_path: Assets/_Sub/Bae/Scene/Nchapter6.unity
     m_guid: 98b138f9e9fdc9f449108e626cbcd29e
   m_HasScriptingDefines: 0

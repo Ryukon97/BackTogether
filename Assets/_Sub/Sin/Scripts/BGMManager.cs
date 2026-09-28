@@ -99,7 +99,8 @@ public class BGMManager : MonoBehaviour
         {
             trackSceneName = "Lobby";
         }
-        else if (sceneName.StartsWith("Nchapter", System.StringComparison.OrdinalIgnoreCase))
+        else if (sceneName.StartsWith("Nchapter", System.StringComparison.OrdinalIgnoreCase) ||
+                 sceneName.StartsWith("NEx", System.StringComparison.OrdinalIgnoreCase))
         {
             trackSceneName = sceneName.Substring(1);
         }
